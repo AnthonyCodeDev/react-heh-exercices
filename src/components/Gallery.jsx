@@ -1,3 +1,6 @@
+
+
+// component/gallery.jsx
 import Photo from "./Photo";
 
 const Gallery = () => {
@@ -5,8 +8,9 @@ const Gallery = () => {
         <div style={styles.gallery}>
             <h1 style={styles.title}>Galerie de photos</h1>
             <div style={styles.photosContainer}>
-                <Photo imageUrl="https://picsum.photos/300/200" />
-                <Photo imageUrl="https://picsum.photos/300/200" />
+                <Photo id={1} imageUrl="https://picsum.photos/300/200" size={{ width: "300px", height: "200px" }} />
+                <Photo id={2} imageUrl="https://picsum.photos/300/200" size={{ width: "200px", height: "100px" }} />
+                <Photo id={2} imageUrl="https://picsum.photos/300/200" size={{ width: "100px", height: "50px" }} />
             </div>
         </div>
     );
@@ -19,7 +23,6 @@ const styles = {
         textAlign: "center",
         backgroundColor: "#222",
         color: "#fff",
-        // align to center
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -34,6 +37,7 @@ const styles = {
         justifyContent: "center",
         gap: "20px",
         marginTop: "10px",
+        alignItems: "baseline",
     },
 };
 
