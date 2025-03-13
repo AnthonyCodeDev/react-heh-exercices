@@ -1,35 +1,29 @@
-
-
-// Photo.jsx
-import React from 'react';
-
-const Photo = ({ id, imageUrl, author, size }) => {
+// component/photo.jsx
+const Photo = ({ id, imageUrl, size, author }) => {
     return (
         <div style={{ ...styles.photoContainer, width: size.width, height: size.height }}>
-            <h6>
-                {author}
-            </h6>
-            <img
-                src={`${imageUrl}?w=${parseInt(size.width)}&h=${parseInt(size.height)}`}
-                alt={`Photo ${id}`}
-                style={{ ...styles.image, width: size.width, height: size.height }}
-            />
+            <img src={imageUrl} alt={`Photo ${id}`} style={{ ...styles.image, width: size.width, height: size.height }} />
+            <p style={styles.author}>{author}</p>
         </div>
     );
 };
 
 const styles = {
     photoContainer: {
-        padding: '5px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        marginTop: '50px',
+        padding: "5px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
     },
     image: {
-        objectFit: 'cover',
+        objectFit: "cover",
     },
+    author: {
+        marginTop: "5px",
+        fontSize: "14px",
+        color: "#fff",
+    }
 };
 
 export default Photo;
