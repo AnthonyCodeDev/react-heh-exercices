@@ -6,24 +6,17 @@ import Photo from "./Photo";
 const Gallery = ({ photos }) => {
     const [search, setSearch] = useState("");
 
-    const filteredPhotos = photos.filter(photo =>
+    const filteredPhotos = (photos || []).filter(photo =>
         photo.author.toLowerCase().includes(search.toLowerCase())
     );
 
-    // handle click on checkbox, and hide the photo id
-    const hide_id = document.getElementById("hide_id");
-    hide_id.addEventListener("click", () => {
-        const ids = document.getElementsByClassName("id");
-        if (hide_id.checked) {
-            for (let i = 0; i < ids.length; i++) {
-                ids[i].style.display = "none";
-            }
-        } else {
-            for (let i = 0; i < ids.length; i++) {
-                ids[i].style.display = "inline";
-            }
-        }
-    });
+
+    const [hideId, setHideId] = useState(false);
+
+    const toggleHideId = () => {
+        setHideId(!hideId);
+    };
+
 
     return (
         <div style={styles.gallery}>
@@ -35,8 +28,9 @@ const Gallery = ({ photos }) => {
                 onChange={(e) => setSearch(e.target.value)}
                 style={styles.searchBar}
             />
-            <input type="checkbox" name="hide_id" id="hide_id" />
+            <input type="checkbox" checked={hideId} onChange={toggleHideId} id="hide_id" />
             <label htmlFor="hide_id">Masquer les ID</label>
+
             <br />
             <div style={styles.photosContainer}>
                 {filteredPhotos.map((photo) => (
@@ -47,6 +41,7 @@ const Gallery = ({ photos }) => {
                         size={{ width: "300px", height: "200px" }}
                         author={photo.author}
                         my_id={photo.id}
+                        hideId={hideId}
                     />
                 ))}
             </div>
